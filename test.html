@@ -1,3 +1,4 @@
+<!-- nextjs tutorial -->
 <html>
   <body>
     <div id="app"></div>
@@ -8,17 +9,38 @@
     <script type="text/jsx">
         const app = document.getElementById("app")
        
-        function Header(props) {
-            console.log(props)
-            return (<h1>Develop. Preview. Ship.</h1>)
+        function Header1(props) {
+            return (<h1>{props.title}</h1>)
         }
+
+        function Header2({title}) {
+            return (<h1>{title ? `Cool ${title}` : "Default Title"}</h1>)
+        }
+
+        
 
 
         function HomePage() {
+            const [likes, setLikes] = React.useState(0);
+            const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+            function handleButton() {
+                console.log("jksdhf");
+                setLikes(likes + 1);
+            }
+
             return (
                 <div>
-                    <Header title="React" />
-                    
+                    <Header1 title="React" />
+                    <Header2 title="A new title" />
+
+                    <ul>
+                        {names.map((name) => (
+                            <li key={name}>{name}</li>
+                          ))}
+                    </ul>
+
+                    <button onClick={handleButton}>Likes {likes}</button>
                 </div>
             )
         }
