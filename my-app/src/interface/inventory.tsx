@@ -3,7 +3,7 @@ import Sidebar from "../sidebar/sidebar";
 
 function Inventory() {
     return (
-        <div className="h-screen w-screen border-4 border-black">
+        <div className="h-screen w-screen">
             <Sidebar pageID="2" />
             <div className="md:ml-60">
                 <h1 className="mt-20 text-4xl text-center">This is the Inventory page</h1>
