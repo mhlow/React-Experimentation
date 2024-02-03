@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 // Page imports
 import Welcome from "./frontpage/welcome";
 import Products from "./interface/products";
+import CreateProducts from './interface/create-product';
 import Inventory from "./interface/inventory";
 import Statistics from "./interface/statistics";
 
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     {
         path: "/products",
         element: <Products />
+    },
+    {
+        path: "/products/create-product",
+        element: <CreateProducts />
     },
     {
         path: "/inventory",

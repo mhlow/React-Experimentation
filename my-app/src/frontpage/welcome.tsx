@@ -1,11 +1,10 @@
-import React, { useLayoutEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../sidebar/sidebar'
 
 
 
 function Welcome() {
-
+    
 
     return (
         <div className="App">

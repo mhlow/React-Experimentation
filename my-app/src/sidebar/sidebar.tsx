@@ -41,10 +41,13 @@ function Sidebar(props: {pageID: string}) {
 
     // Returns JSX element of the sidebar nav component
     function createNavComponent(item: navItem): JSX.Element {
-        let styles = "my-1 py-4 px-10 bg-indigo-200 rounded-r-lg cursor-pointer transition-all hover:bg-slate-400 active:bg-slate-500";
+        let styles = "my-1 py-4 px-10 bg-indigo-200 rounded-r-lg cursor-pointer transition-all duration-500 hover:bg-slate-400 hover:w-64 active:bg-slate-500";
         if (item.selected) {
-            styles += " bg-[#b6c8e3]";
+            styles += " bg-[#afbfdf] w-64";
+        } else {
+            styles += " w-60";
         }
+
         return <a href={item.link}><li className={styles}>
             {item.name}
         </li></a>;
@@ -52,7 +55,7 @@ function Sidebar(props: {pageID: string}) {
 
 
     return (
-        <aside className={sidebarState + " fixed left-0 w-64 h-screen bg-indigo-100 flex flex-col"}>
+        <aside className={sidebarState + " fixed left-0 top-0 w-60 h-screen bg-indigo-100 flex flex-col"}>
             <ul>
                 <a href="/"><img src={HomeIcon} alt="Logo"></img></a>
 
