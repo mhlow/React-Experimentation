@@ -36,7 +36,6 @@ function Sidebar(props: {pageID: string}) {
 			// setMenuButton("hidden");
 			setSidebarState("block");
 		}
-        console.log(sidebarState);
 	});
 
     // Returns JSX element of the sidebar nav component
@@ -48,7 +47,7 @@ function Sidebar(props: {pageID: string}) {
             styles += " w-60";
         }
 
-        return <a href={item.link}><li className={styles}>
+        return <a href={item.link} key={item.name}><li className={styles}>
             {item.name}
         </li></a>;
     }
@@ -57,7 +56,7 @@ function Sidebar(props: {pageID: string}) {
     return (
         <aside className={sidebarState + " fixed left-0 top-0 w-60 h-screen bg-indigo-100 flex flex-col"}>
             <ul>
-                <a href="/"><img src={HomeIcon} alt="Logo"></img></a>
+                <a href="/" key="logo"><img src={HomeIcon} alt="Logo"></img></a>
 
                 {navItems.map((item) => {
                     return (createNavComponent(item));

@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../sidebar/sidebar";
 import api from "../api";
 import { TextareaHTMLAttributes } from "react";
@@ -14,7 +14,7 @@ function CreateProducts() {
     })
 
     const fetchTransactions = async () => {
-        const response = await api.get("/products/create-product");
+        const response = await api.get("/products");
         setTransactions(response.data);
     }
 
@@ -47,7 +47,7 @@ function CreateProducts() {
         let modifiedFormData = {...formData, price: 100 * Number(formData.price)};
         console.log(formData, modifiedFormData);
         
-        await api.post("/products/create-product", modifiedFormData);
+        await api.post("/products", modifiedFormData);
 
         fetchTransactions();
         setFormData({
@@ -57,6 +57,7 @@ function CreateProducts() {
             source: "",
             is_available: false
         });
+        window.location.href = "/products";
     }
 
 
@@ -108,7 +109,7 @@ function CreateProducts() {
 
 
 
-                        <button type="submit" className="m-4 px-4 py-2 rounded bg-slate-400">
+                        <button type="submit" className="my-4 px-4 py-2 rounded bg-slate-400">
                             Submit
                         </button>
 

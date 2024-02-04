@@ -58,7 +58,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 models.Base.metadata.create_all(bind=engine)
 
-@app.post("/products/create-product", response_model=ProductModel)
+@app.post("/products", response_model=ProductModel)
 async def create_product(product: ProductBase, db: db_dependency):
     db_transaction = models.Product(**product.model_dump())
     db.add(db_transaction)
@@ -67,7 +67,7 @@ async def create_product(product: ProductBase, db: db_dependency):
     return db_transaction
 
 
-@app.get("/products/create-product", response_model=List[ProductModel])
+@app.get("/products", response_model=List[ProductModel])
 async def read_products(db: db_dependency, skip: int = 0, limit = 100):
     return db.query(models.Product).offset(skip).limit(limit).all()
 
