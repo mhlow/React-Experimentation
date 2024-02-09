@@ -42,16 +42,14 @@ function Products() {
         "price",
         "source",
         "is_available",
-        "options",
     ];
 
     const widths: any = {
         "name": "w-3/12",
         "description": "w-4/12",
-        "price": "w-1/12",
+        "price": "w-2/12",
         "source": "w-2/12",
         "is_available": "w-1/12",
-        "options": "w-1/12",
     }
 
     const [products, setProducts] = useState([]);
@@ -60,32 +58,6 @@ function Products() {
         const response = await api.get("/products");
         setProducts(response.data);
         // console.log(products);
-    }
-
-
-
-    // TODO 
-    // Switch from using any type to an interface?
-    function displayTableData(product: product): JSX.Element {
-        const formattedName = product.name;
-
-        let formattedProduct: any = {
-            ...product,
-            name: formattedName,
-            price: product.price / 100.0,
-        }
-        
-        let styles: any = {
-            name: " w-1/12",
-        }
-        
-        return (
-        <tr className="">
-            {displayedColumns.map((colName: string) => {
-                return (<td className={styles[colName] + " border border-teal-400"}>{formattedProduct[colName]}</td>);
-            })}
-        </tr>
-        );
     }
 
     
@@ -129,9 +101,9 @@ function Products() {
             case "is_available":
                 var formattedData: string = rawData ? "Yes" : "No";
                 break;
-            case "":
-                var formattedData: string = "";
-                break;
+            // case "options":
+            //     var formattedData: string = "";
+            //     break;
             default:
                 console.log("Error: Did not hit a valid column name")
                 var formattedData: string = "ERROR";
@@ -140,15 +112,18 @@ function Products() {
         return formattedData;
     }
 
+    function displayHeader(colName: string) {
+        return colName === "is_available" ? "Available?" : 
+        (colName[0] || "").toUpperCase() + colName.substring(1);
+    }
+
 
     function displayColumn(colName: string): JSX.Element {
-        let columnStyle = widths[colName] + " border-teal-900 overflow-hidden";
-        colName = colName === "options" ? "" : colName;
+        let columnStyle = widths[colName] + " border-teal-900 overflow-hidden whitespace-nowrap ";
 
         return <div className={columnStyle}>
             <div id="columnHeader" className="px-4 py-3 h-12 text-left font-bold bg-slate-400" key={colName}>
-                { colName === "is_available" ? "Available?" : 
-                (colName[0] || "").toUpperCase() + colName.substring(1) }
+                { displayHeader(colName) }
 
             </div>
 
